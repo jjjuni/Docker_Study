@@ -18,8 +18,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build with Gradle
-        run: ./gradlew clean build -x test
+      - name: Build with Gradle  # Gradle을 사용하여 프로젝트 빌드
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: build --stacktrace --info
 
       - name: Build Docker image
         run: |
