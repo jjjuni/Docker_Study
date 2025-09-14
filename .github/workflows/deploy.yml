@@ -64,10 +64,10 @@ jobs:
             mkdir -p ~/travloom
           
             # application.properties 생성
-            echo \"$APP_PROPERTIES\" > ~/travloom/application.properties
+            echo \"$APP_PROPERTIES\" > ~/travloom/resources/application.properties
   
             # serviceAccountKey.json 생성 (base64 디코딩)
-            echo \"$FIREBASE_CREDENTIALS_JSON\" | base64 -d > ~/travloom/serviceAccountKey.json
+            echo \"$FIREBASE_CREDENTIALS_JSON\" | base64 -d > ~/travloom/resources/serviceAccountKey.json
   
             # Docker Compose (ec2에 미리 올려둔 docker-compose.yml로 docker compose)
             cd ~/travloom
