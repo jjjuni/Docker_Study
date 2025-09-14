@@ -19,6 +19,7 @@ public class FirebaseConfig {
         // 로컬 개발: 클래스패스에서 읽기
         if (System.getProperty("spring.profiles.active", "dev").equals("dev")) {
             serviceAccount = getClass().getResourceAsStream("/serviceAccountKey.json");
+            System.out.println("local test");
         }
         // 배포 환경: 컨테이너 절대경로에서 읽기
         else {
