@@ -16,14 +16,16 @@ public class FirebaseConfig {
     public void firestore() throws IOException {
         InputStream serviceAccount;
 
+        String activeProfile = System.getenv("SPRING_PROFILES_ACTIVE");
         // 로컬 개발: 클래스패스에서 읽기
-        if (System.getProperty("spring.profiles.active", "dev").equals("dev")) {
-            serviceAccount = getClass().getResourceAsStream("/serviceAccountKey.json");
+        if ("dev".equals(activeProfile)) {
+            serviceAccount = getClass().getClassLoader().getResourceAsStream("serviceAccountKey.json");
             System.out.println("local test");
         }
         // 배포 환경: 컨테이너 절대경로에서 읽기
         else {
             serviceAccount = new FileInputStream("/serviceAccountKey.json");
+            System.out.println("prod test");
         }
 
         FirebaseOptions options = new FirebaseOptions.Builder()
